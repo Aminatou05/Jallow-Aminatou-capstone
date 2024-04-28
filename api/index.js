@@ -7,8 +7,6 @@ dotenv.config();
 const mongoURI = process.env.MONGO_URI;
 
 
-
-
 // Connect to Mongo
 mongoose.connect(mongoURI);
 mongoose.connection.once("open", () => {
