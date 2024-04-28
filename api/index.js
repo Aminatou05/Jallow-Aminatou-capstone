@@ -23,3 +23,7 @@ app.use(express.json());
 app.listen(PORT, () => {
   console.log(`listening`);
 });
+
+app.get('/' , (req , res )  => {
+  res.send('Nakamu');
+})
