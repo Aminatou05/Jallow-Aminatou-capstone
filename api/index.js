@@ -1,6 +1,6 @@
 import express from "express";
 
-// creating express application
+// creating express application today
 const app = express();
 
 const PORT = process.env.PORT || 5050;
