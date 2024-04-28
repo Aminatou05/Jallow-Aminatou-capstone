@@ -1,0 +1,3 @@
+[submodule "Capstone-Frontend"]
+	path = Capstone-Frontend
+	url = https://github.com/Aminatou05/Capstone-2024.git
