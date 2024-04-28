@@ -1,6 +1,7 @@
 import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
+import userRouter from './controllers/user.js';
 dotenv.config();
 
 // Global congiguration
@@ -20,10 +21,22 @@ const PORT = process.env.PORT || 5050;
 
 app.use(express.json());
 
+
+// ================ Routes ================
+app.use('/api/user', userRouter);
+
+
+
+
+
+
+
+
+
+
+
 app.listen(PORT, () => {
   console.log(`listening`);
 });
 
-app.get('/' , (req , res )  => {
-  res.send('Nakamu');
-})
+
