@@ -23,6 +23,18 @@ const PORT = process.env.PORT || 5050;
 
 app.use(express.json());
 
+// ================ Middleware ================
+// creating a middleware funtion to handle possible errors
+app.use((err, req, res, next) => {
+  const statusCode = err.statusCode || 500;
+  const message = err.message || "Internal Server Error";
+  return res.status(statusCode). json({
+    success: false,
+    statusCode,
+    message,
+  })
+});
+
 
 // ================ Routes ================
 app.use('/api/user', userRouter);
