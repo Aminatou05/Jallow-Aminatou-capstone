@@ -1,7 +1,8 @@
 import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
-import userRouter from './controllers/user.js';
+import userRouter from './routes/user.route.js';
+
 dotenv.config();
 
 // Global congiguration
@@ -25,6 +26,9 @@ app.use(express.json());
 // ================ Routes ================
 app.use('/api/user', userRouter);
 
+// app.get('/test', (req, res) => {
+//   res.send('Nakamu')
+// })
 
 
 
