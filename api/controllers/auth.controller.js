@@ -39,3 +39,58 @@ export const signin = async (req, res, next) => {
     next(error);
   }
 };
+ //google fuction
+ export const google = async (req, res, next) => {
+  try {
+    // Find the user in the database based on the provided email address
+    const user = await User.findOne({email: req.body.email})
+    if (user) {
+        // Generate a JSON Web Token (JWT) for the user
+      const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
+      const { password: pass, ...rest } = user._doc;
+      res
+        .cookie('access_token', token, { httpOnly: true })
+        .status(200)
+        .json(rest);
+    } else{
+      // Generate a random password for the new user
+      const generatedPassword =
+      Math.random().toString(36).slice(-8) +
+      Math.random().toString(36).slice(-8);
+    const hashedPassword = bcryptjs.hashSync(generatedPassword, 10);
+      // Create a new user with the generated password and other details
+    const newUser = new User({
+      username:
+        req.body.name.split(' ').join('').toLowerCase() +
+        Math.random().toString(36).slice(-4),
+      email: req.body.email,
+      password: hashedPassword,
+      avatar: req.body.photo,
+    });
+     // Save the new user to the database
+    await newUser.save();
+    // Generate a JWT for the new user
+    const token = jwt.sign({ id: newUser._id }, process.env.JWT_SECRET);
+    const { password: pass, ...rest } = newUser._doc;
+    res
+      .cookie('access_token', token, { httpOnly: true })
+      .status(200)
+      .json(rest);
+  }
+} catch (error) {
+  next(error);
+}
+};
+
+//signout function
+export const signOut = async (req, res, next) => {
+  try {
+      // Clear the access token cookie to log the user out
+    res.clearCookie('access_token');
+    // Send a 200 status response with a message indicating successful logout
+    res.status(200).json('User has been logged out!');
+  } catch (error) {
+    next(error);
+  }
+};
+ 

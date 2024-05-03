@@ -18,6 +18,10 @@ const userSchema = new mongoose.Schema(
         type: String,
         required: true,
       },
+      avatar:{
+        type: String,
+        default: "https://unsplash.com/photos/silhouette-of-man-illustration-2LowviVHZ-E"
+      }
    
     },
     { timestamps: true }
