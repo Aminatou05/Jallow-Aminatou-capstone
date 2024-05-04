@@ -88,7 +88,7 @@ export const signOut = async (req, res, next) => {
       // Clear the access token cookie to log the user out
     res.clearCookie('access_token');
     // Send a 200 status response with a message indicating successful logout
-    res.status(200).json('User has been logged out!');
+    res.status(200).json({ message: 'User has been logged out!' });
   } catch (error) {
     next(error);
   }
