@@ -21,5 +21,7 @@ router.delete("/delete/:id", verifyToken, deleteUser);
 // Route for getting user listings
 router.get('/listings/:id', verifyToken, getUserListings)
 
+
+
 export default router;
 
