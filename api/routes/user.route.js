@@ -6,16 +6,20 @@ import {
   getUserListings
 } from "../controllers/user.controller.js";
 import { verifyToken } from "../utils/verifyUser.js";
-
 // Create a new router instance
 const router = express.Router();
 
-// route for the test endpoint
+// Route for the test endpoint
 router.get("/test", test);
 
-//route for updating a user
+// Route for updating a user
 router.patch("/update/:id", verifyToken, updateUser);
+
+// Route for deleting a user
 router.delete("/delete/:id", verifyToken, deleteUser);
-router.get('/listings/:id', verifyToken, getUserListings);
+
+// Route for getting user listings
+router.get('/listings/:id', verifyToken, getUserListings)
 
 export default router;
+
