@@ -39,7 +39,7 @@ export const signin = async (req, res, next) => {
     next(error);
   }
 };
- //google fuction
+ //google function
  export const google = async (req, res, next) => {
   try {
     // Find the user in the database based on the provided email address

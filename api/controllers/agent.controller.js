@@ -5,7 +5,7 @@ const router = express.Router();
 
 // seed route for agents
 router.get("/seed", async (req, res) => {
-    console.log("Seeding agents...");
+    // console.log("Seeding agents...");
     try {
       await Agent.create([
         {
